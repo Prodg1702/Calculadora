@@ -18,7 +18,7 @@ def diminuir():
 # criar janela
 root = Tk()
 root.geometry('400x10+720+350') # Declarando o tamanho da janela (400x300) tamanho inicial/ +100 +100 luigar onde ela vai abrir
-root.config(bg='black') # Background color
+root.config(bg='black') # Background color desejada
 root.minsize(width=100, height=56)
 root.maxsize(width=600, height=600)
 root.grid_rowconfigure(0, weight=1)
