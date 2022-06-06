@@ -13,6 +13,7 @@ def resultado():
 
 #criando janela
 root = Tk()
+root.title('Calculadora')
 root.geometry('400x10+720+350')
 root.config(bg='grey')
 root.minsize(width=400, height=360)
