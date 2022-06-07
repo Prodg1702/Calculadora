@@ -2,6 +2,7 @@ from tkinter import *
 
 #criando janela
 root = Tk()
+root.title('Cadastro')
 root.geometry('980x315+720+350')
 root.grid_rowconfigure(0, weight=1)
 root.grid_rowconfigure(1, weight=1)
@@ -27,7 +28,7 @@ root.grid_columnconfigure(9, weight=1)
 root.grid_columnconfigure(10, weight=1)
 
 
-fr1 = Frame(root, background='#ededed')
+fr1 = LabelFrame(root, background='#ededed')
 fr2 = Frame(root, background='#ededed')
 fr3 = Frame(root, background='#ededed')
 
