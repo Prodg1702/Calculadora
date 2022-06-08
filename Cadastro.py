@@ -1,9 +1,40 @@
 from tkinter import * 
 
+def validação():
+    
+    valida = False
+        
+# Meses com 31 dias
+    if( mes==1 or mes==3 or mes==5 or mes==7 or \
+        mes==8 or mes==10 or mes==12):
+        if(dia<=31):
+                valida = True
+# Meses com 30 dias
+    elif( mes==4 or mes==6 or mes==9 or mes==11):
+        if(dia<=30):
+            valida = True
+    elif mes==2:
+# Testa se é bissexto
+        if (ano%4==0 and ano%100!=0) or (ano%400==0):
+            if(dia<=29):
+                valida = True
+        elif(dia<=28):
+            valida = True
+
+    if(valida):
+        lb12_fr3['text'] = 'Data válida'
+    else:
+        lb12_fr3['text'] = 'Data inválida'
+
+dia = int( input('Dia: ') )
+mes = int( input('Mês: ') )
+ano = int( input('Ano: ') )
+
+
 #criando janela
 root = Tk()
 root.title('Cadastro')
-root.geometry('980x315+720+350')
+root.geometry('980x360+720+350')
 root.grid_rowconfigure(0, weight=1)
 root.grid_rowconfigure(1, weight=1)
 root.grid_rowconfigure(2, weight=1)
@@ -28,8 +59,8 @@ root.grid_columnconfigure(9, weight=1)
 root.grid_columnconfigure(10, weight=1)
 
 
-fr1 = LabelFrame(root, background='#ededed')
-fr2 = Frame(root, background='#ededed')
+fr1 = LabelFrame(root, text='Dados', background='#ededed')
+fr2 = LabelFrame(root, text='Localidade', background='#ededed')
 fr3 = Frame(root, background='#ededed')
 
 #criando widgets dados pessoais
@@ -37,7 +68,7 @@ lb1_fr1 = Label(fr1, text='Dados Pessoais', font='Arial 20', fg='cyan')
 lb2_fr1 = Label(fr1, text='Nome:', font='Arial 16')
 in1_fr1 = Entry(fr1, font='Arial 16')
 lb3_fr1 = Label(fr1, text='Data Nasc:', font='Arial 16')
-in2_fr1 = Entry(fr1, font='Arial 16')
+in2_fr1 = Entry(fr1, text='', font='Arial 16',)
 lb4_fr1 = Label(fr1, text='CPF:', font='Arial 16')
 in3_fr1 = Entry(fr1, font='Arial 16')
 lb5_fr1 = Label(fr1, text='Telefone', font='Arial 16')
@@ -59,8 +90,9 @@ in9_fr2 = Entry(fr2, font='Arial 16')
 
 
 #Botões
-bt1_fr3 = Button(fr3, text='Gravar Dados', font='Arial 12')
+bt1_fr3 = Button(fr3, text='Gravar Dados', font='Arial 12', command=validação)
 bt2_fr3 = Button(fr3, text='Listar Dados', font='Arial 12')
+lb12_fr3 = Label(fr1, text='', font='Arial 16')
 
 
 
@@ -79,6 +111,7 @@ in1_fr1.grid(row= 1, column= 1,columnspan= 2, sticky=NE)
 #Data nascimento
 lb3_fr1.grid(row= 2, column= 0,sticky=NE)
 in2_fr1.grid(row= 2, column= 1,columnspan= 2, sticky=NE)
+lb12_fr3.grid(row=2, column=3, stick=NE)
 
 #CPF
 lb4_fr1.grid(row= 3, column= 0,sticky=NE)
