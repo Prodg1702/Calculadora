@@ -8,7 +8,6 @@ def calculo():
         lb3_fr2['text'] = x
     else:
         lb3_fr2['text'] = "Tente novamente"
-
     
     
 

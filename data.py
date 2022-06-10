@@ -1,33 +1,35 @@
+import tkinter as tk
 
-def valida():
-    dia = int( input('Dia: ') )
-    mes = int( input('Mês: ') )
-    ano = int( input('Ano: ') )
+class EntryWithPlaceholder(tk.Entry):
+    def __init__(self, master=None, placeholder="PLACEHOLDER", color='grey'):
+        super().__init__(master)
 
-    valida = False
-        
-        # Meses com 31 dias
-    if( mes==1 or mes==3 or mes==5 or mes==7 or \
-        mes==8 or mes==10 or mes==12):
-        if(dia<=31):
-                valida = True
-        # Meses com 30 dias
-    elif( mes==4 or mes==6 or mes==9 or mes==11):
-        if(dia<=30):
-            valida = True
-    elif mes==2:
-            # Testa se é bissexto
-        if (ano%4==0 and ano%100!=0) or (ano%400==0):
-            if(dia<=29):
-                valida = True
-        elif(dia<=28):
-            valida = True
+        self.placeholder = placeholder
+        self.placeholder_color = color
+        self.default_fg_color = self['fg']
 
-    if(valida):
-        print('Data válida')
-    else:
-        print('Inválida')
+        self.bind("<FocusIn>", self.foc_in)
+        self.bind("<FocusOut>", self.foc_out)
 
+        self.put_placeholder()
 
+    def put_placeholder(self):
+        self.insert(0, self.placeholder)
+        self['fg'] = self.placeholder_color
 
-valida()
+    def foc_in(self, *args):
+        if self['fg'] == self.placeholder_color:
+            self.delete('0', 'end')
+            self['fg'] = self.default_fg_color
+
+    def foc_out(self, *args):
+        if not self.get():
+            self.put_placeholder()
+
+if __name__ == "__main__": 
+    root = tk.Tk() 
+    username = EntryWithPlaceholder(root, "username")
+    password = EntryWithPlaceholder(root, "password", 'blue')
+    username.pack()
+    password.pack()  
+    root.mainloop()
