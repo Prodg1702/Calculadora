@@ -26,10 +26,6 @@ class Menu:
             elif entrada == '6':
                 estoque.excluir_fabricantes()
             elif entrada == '7':
-                compra.comprar()
-            elif entrada == '8':
-                venda.vender()
-            elif entrada == '9':
                 break
             else:
                 print('Não foi possível ajudar, entre em contato pelo 0800.')
